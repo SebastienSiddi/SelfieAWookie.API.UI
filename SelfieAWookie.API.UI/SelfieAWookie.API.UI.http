@@ -1,0 +1,6 @@
+@SelfieAWookie.API.UI_HostAddress = http://localhost:5108
+
+GET {{SelfieAWookie.API.UI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
