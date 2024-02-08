@@ -13,12 +13,14 @@ namespace SelfieAWookie.API.UI.Controllers
     {
         #region Fields
         private readonly ISelfieRepository _repository = null;
+        private readonly IWebHostEnvironment _webHostEnvironment = null;
         #endregion
 
         #region Constructors
-        public SelfiesController(ISelfieRepository repository)
+        public SelfiesController(ISelfieRepository repository, IWebHostEnvironment webHostEnvironment)
         {
             this._repository = repository;
+            this._webHostEnvironment = webHostEnvironment;
         }
         #endregion
 
@@ -36,6 +38,27 @@ namespace SelfieAWookie.API.UI.Controllers
                 NbSelfiesFromWookie = (item.Wookie?.Selfies?.Count).GetValueOrDefault(0) }).ToList();
 
             return this.Ok(model);
+        }      
+
+        [Route("photos")]
+        [HttpPost]
+        public async Task<IActionResult> AddPicture(IFormFile picture)
+        {
+            string filePath = Path.Combine(this._webHostEnvironment.ContentRootPath, @"images\selfies");
+
+            if (! Directory.Exists(filePath))
+            {
+                Directory.CreateDirectory(filePath);
+            }
+            filePath = Path.Combine(filePath, picture.FileName);
+
+            using var stream = new FileStream(filePath, FileMode.OpenOrCreate);          
+            await picture.CopyToAsync(stream);
+
+            var itemFile = this._repository.AddOnePicture(filePath);
+            this._repository.UnitOfWork.SaveChanges();
+
+            return this.Ok(itemFile);
         }
 
         [HttpPost]
