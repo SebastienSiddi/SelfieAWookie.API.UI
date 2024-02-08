@@ -35,6 +35,27 @@ namespace SelfieAWookie.API.UI.Controllers
 
             return this.Ok(model);
         }
+
+        [HttpPost]
+        public IActionResult AddOne(SelfieDto dto)
+        {
+            IActionResult result = this.BadRequest();
+
+            Selfie addSelfie = this._repository.AddOne(new Selfie()
+            {
+                ImagePath = dto.ImagePath,
+                Title = dto.Title
+            });
+            this._repository.UnitOfWork.SaveChanges();
+             
+            if (addSelfie != null)
+            {
+                dto.Id = addSelfie.Id;
+                result = this.Ok(dto);
+            }
+
+            return result;
+        }
         #endregion
     }
 }

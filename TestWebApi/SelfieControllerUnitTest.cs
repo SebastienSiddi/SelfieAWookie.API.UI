@@ -3,12 +3,37 @@ using Moq;
 using SelfieAWookie.API.UI.Application.DTOs;
 using SelfieAWookie.API.UI.Controllers;
 using SelfieAWookies.Core.Selfies.Domain;
+using SelfieAWookies.Core.Selfies.Framework;
 
 namespace TestWebApi
 {
     public class SelfieControllerUnitTest
     {
         #region Public methods
+        [Fact]
+        public void ShouldAddOneSelfie()
+        {
+            // ARRANGE
+            SelfieDto selfie = new SelfieDto();
+            var repositoryMock = new Mock<ISelfieRepository>();
+            var unit = new Mock<IUnitOfWork>();
+            repositoryMock.Setup(item => item.UnitOfWork).Returns(unit.Object);
+            repositoryMock.Setup(item => item.AddOne(It.IsAny<Selfie>())).Returns(new Selfie() { Id = 6 });
+
+            // ACT
+            var controller = new SelfiesController(repositoryMock.Object);
+            var result = controller.AddOne(selfie);
+
+            // ASSERT
+            Assert.NotNull(result);
+            Assert.IsType<OkObjectResult>(result);
+
+            var addedSelfie = (result as OkObjectResult).Value as SelfieDto;
+            Assert.NotNull(addedSelfie);
+            Assert.True(addedSelfie.Id > 0);
+        }
+
+
         [Fact]
         public void ShouldReturnListOfSelfies()
         {
