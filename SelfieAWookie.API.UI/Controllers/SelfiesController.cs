@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using SelfieAWookies.Core.Selfies.Infrastructures.Data;
 
 namespace SelfieAWookie.API.UI.Controllers
 {
@@ -7,11 +9,25 @@ namespace SelfieAWookie.API.UI.Controllers
     [ApiController]
     public class SelfiesController : ControllerBase
     {
-        #region Public methods
-        [HttpGet]
-        public IEnumerable<Selfie> Get()
+        #region Fields
+        private readonly SelfiesContext _context = null;
+        #endregion
+
+        #region Constructors
+        public SelfiesController(SelfiesContext context)
         {
-            return Enumerable.Range(1, 10).Select(item => new Selfie() { Id = item });
+            this._context = context;
+        }
+        #endregion
+
+        #region Public methods    
+        
+        [HttpGet]
+        public IActionResult Get()
+        {
+            var model = this._context.Selfies.Include(item => item.Wookie).Select(item => new { Title = item.Title, WookieId = item.Wookie.Id, NbSelfiesFromWookie = item.Wookie.Selfies.Count}).ToList();
+
+            return this.Ok(model);
         }
         #endregion
     }
