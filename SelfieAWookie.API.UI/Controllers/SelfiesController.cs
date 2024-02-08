@@ -25,9 +25,11 @@ namespace SelfieAWookie.API.UI.Controllers
         #region Public methods    
         
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult GetAll([FromQuery] int wookieId = 0)
         {
-            var selfiesList = _repository.GetAll();
+            var param = this.Request.Query["wookyId"];
+
+            var selfiesList = _repository.GetAll(wookieId);
             var model = selfiesList.Select(item => new SelfieResumeDto() { 
                 Title = item.Title, 
                 WookieId = item.Wookie.Id, 

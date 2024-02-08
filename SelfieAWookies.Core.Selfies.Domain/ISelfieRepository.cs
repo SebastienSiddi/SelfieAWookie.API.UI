@@ -12,7 +12,7 @@ namespace SelfieAWookies.Core.Selfies.Domain
     /// </summary>
     public interface ISelfieRepository : IRepository
     {
-        ICollection<Selfie> GetAll();
+        ICollection<Selfie> GetAll(int wookieId);
 
         /// <summary>
         /// Add a new Selfie in database

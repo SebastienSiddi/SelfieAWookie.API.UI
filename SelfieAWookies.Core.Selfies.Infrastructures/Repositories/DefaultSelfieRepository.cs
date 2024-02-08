@@ -24,9 +24,16 @@ namespace SelfieAWookies.Core.Selfies.Infrastructures.Repositories
         #endregion
 
         #region Public methods
-        public ICollection<Selfie> GetAll()
+        public ICollection<Selfie> GetAll(int wookieId)
         {
-            return this._context.Selfies.Include(item => item.Wookie).ToList();
+            var query = this._context.Selfies.Include(item => item.Wookie).AsQueryable();
+
+            if (wookieId > 0)
+            {
+                query = query.Where(item => item.Wookie.Id == wookieId);
+            }
+
+            return query.ToList();
         }
 
         public Selfie AddOne(Selfie item)
