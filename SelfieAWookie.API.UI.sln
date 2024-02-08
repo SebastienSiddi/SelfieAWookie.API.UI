@@ -17,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{E3B5BDBD-8
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SelfieAWookies.Core.Selfies.Framework", "SelfieAWookies.Core.Selfies.Framework\SelfieAWookies.Core.Selfies.Framework.csproj", "{C7181D34-FEB6-45E3-B571-CFC3CDCEE8CE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SelfieAWookies.Core.Selfies.Data.Migrations", "SelfieAWookies.Core.Selfies.Data.Migrations\SelfieAWookies.Core.Selfies.Data.Migrations.csproj", "{9023BE43-73DE-469B-A8FB-EB0181DFA274}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{C7181D34-FEB6-45E3-B571-CFC3CDCEE8CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7181D34-FEB6-45E3-B571-CFC3CDCEE8CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C7181D34-FEB6-45E3-B571-CFC3CDCEE8CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9023BE43-73DE-469B-A8FB-EB0181DFA274}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9023BE43-73DE-469B-A8FB-EB0181DFA274}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9023BE43-73DE-469B-A8FB-EB0181DFA274}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9023BE43-73DE-469B-A8FB-EB0181DFA274}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -52,6 +58,7 @@ Global
 		{A10203FE-1A2A-4E75-A868-29ED1C605496} = {E3B5BDBD-8CD4-4A93-B810-9E765D9C01BD}
 		{EFBFEFA6-D1DE-445C-B0B4-0F3F19095E0D} = {E3B5BDBD-8CD4-4A93-B810-9E765D9C01BD}
 		{C7181D34-FEB6-45E3-B571-CFC3CDCEE8CE} = {E3B5BDBD-8CD4-4A93-B810-9E765D9C01BD}
+		{9023BE43-73DE-469B-A8FB-EB0181DFA274} = {E3B5BDBD-8CD4-4A93-B810-9E765D9C01BD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {81B26AC4-E554-488B-8EFE-4AFF3FEFCFAD}
