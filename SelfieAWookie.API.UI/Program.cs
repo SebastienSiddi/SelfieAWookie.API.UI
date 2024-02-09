@@ -18,6 +18,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options =>
     // options.SignIn.RequireConfirmedEmail = true;
 }).AddEntityFrameworkStores<SelfiesContext>();
 
+builder.Services.AddCustomOptions(builder.Configuration);
 builder.Services.AddInjections();
 builder.Services.AddCustomSecurity(builder.Configuration);
 
