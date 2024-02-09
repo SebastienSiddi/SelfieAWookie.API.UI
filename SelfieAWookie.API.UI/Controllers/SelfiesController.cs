@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SelfieAWookie.API.UI.Application.DTOs;
+using SelfieAWookie.API.UI.ExtensionMethods;
 using SelfieAWookies.Core.Selfies.Domain;
 using SelfieAWookies.Core.Selfies.Infrastructures.Data;
 
@@ -9,6 +11,7 @@ namespace SelfieAWookie.API.UI.Controllers
 {
     [Route("api/v1/[controller]")]
     [ApiController]
+    [EnableCors(SecurityMethods.DEFAULT_POLICY)]
     public class SelfiesController : ControllerBase
     {
         #region Fields
@@ -26,7 +29,7 @@ namespace SelfieAWookie.API.UI.Controllers
 
         #region Public methods    
         
-        [HttpGet]
+        [HttpGet]       
         public IActionResult GetAll([FromQuery] int wookieId = 0)
         {
             var param = this.Request.Query["wookyId"];
