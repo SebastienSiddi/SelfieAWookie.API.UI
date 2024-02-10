@@ -4,6 +4,8 @@ using SelfieAWookies.Core.Selfies.Infrastructures.Data;
 using SelfieAWookies.Core.Selfies.Infrastructures.Repositories;
 using SelfieAWookie.API.UI.ExtensionMethods;
 using Microsoft.AspNetCore.Identity;
+using SelfieAWookies.Core.Selfies.Infrastructures.Loggers;
+using SelfieAWookie.API.UI.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,6 +32,10 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+ILoggerFactory loggerFactory = LoggerFactory.Create(builder => builder.AddProvider(new CustomLoggerProvider()));
+
+app.UseMiddleware<LogRequestMiddleware>();
+
 if (app.Environment.IsDevelopment())
 {
   
