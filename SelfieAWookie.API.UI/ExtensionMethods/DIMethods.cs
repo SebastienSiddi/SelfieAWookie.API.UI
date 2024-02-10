@@ -10,9 +10,12 @@ namespace SelfieAWookie.API.UI.ExtensionMethods
         /// Prepare customs dependency injections
         /// </summary>
         /// <param name="services"></param>
-        public static void AddInjections(this IServiceCollection services) 
+        public static IServiceCollection AddInjections(this IServiceCollection services) 
         {
             services.AddScoped<ISelfieRepository, DefaultSelfieRepository>();
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
+
+            return services;
         }
         #endregion
     }
